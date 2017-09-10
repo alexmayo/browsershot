@@ -23,6 +23,7 @@ class Browsershot
     protected $disableGpu = true;
     protected $hideScrollbars = true;
     protected $userAgent = '';
+    protected $fullPage = false;
 
     protected $temporaryHtmlDirectory;
 
@@ -66,6 +67,13 @@ class Browsershot
     {
         $this->pathToChrome = $pathToChrome;
 
+        return $this;
+    }
+    
+    public function fullPage()
+    {
+        $this->fullPage = true;
+        
         return $this;
     }
 
@@ -195,6 +203,10 @@ class Browsershot
         if ($this->disableGpu) {
             $command .= ' --disable-gpu';
         }
+        
+        if ($this->fullPage) {
+            $command .= '--fullPage true';
+        }
 
         if ($this->windowWidth > 0) {
             $command .= ' --window-size='
@@ -224,6 +236,10 @@ class Browsershot
 
         if ($this->disableGpu) {
             $command .= ' --disable-gpu';
+        }
+        
+        if ($this->fullPage) {
+            $command .= '--fullPage true';
         }
 
         if ($this->hideScrollbars) {
