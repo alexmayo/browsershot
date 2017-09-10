@@ -119,6 +119,14 @@ Browsershot::url('https://example.com')
     ->save($pathToImage);
 ```
 
+To take a full-page screenshot, simply append the `fullPage` method. This behaviour can be buggy, but should work for most websites.
+
+```php
+Browsershot::url('https://example.com')
+    ->fullPage()
+    ->save($pathToImage);
+```
+
 The default timeout of Browsershot is set to 60 seconds. Of course, you can modify this timeout:
 
 ```php
